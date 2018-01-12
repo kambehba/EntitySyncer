@@ -21,7 +21,7 @@ app.use(function(req, res, next) {
 
 app.set('view engine','ejs');
 
-console.log('1111115555551111111111');
+console.log('*******');
 
 
  var config = {
