@@ -1,9 +1,11 @@
 var express = require('express');
-var firebase = require('firebase')
+var firebase = require('firebase');
+var socket = require('socket.io');
 var app = express();
+
 //var mongoose = require('mongoose');
 var config = require('./config/config');
-//var apiController = require('./controllers/outputController')
+var apiController = require('./controllers/entity-syncer-controller')
 var port = process.env.PORT || 3000;
 //var port = process.env.MONGOLAB_URI || process.env.MONGOHQ_URL || 3000;
 //var setupController = require('./controllers/setupController');
@@ -35,14 +37,23 @@ console.log('****ff***');
   firebase.initializeApp(config);
 
 console.log('firebase connected...');
-//mongoose.connect(config.getDbConnectionString());
-//mongoose.connect('output-server:k8084164@ds123050.mlab.com:23050/app-data');
-//console.log(config.getDbConnectionString());
-/*mongoose.connection
-    .once('open', () => console.log('Good to go!'))
-    .on('error',(error) =>{consol.warn('Warning',error);
-});*/
+console.log("AAAAAmmmmAAA*******************");
 
-//setupController(app);
-//apiController(app);
-app.listen(port);
+apiController(app);
+var server = app.listen(port);
+var io = socket(server);
+console.log("99999999999999"+server.port ); 
+io.sockets.on('connection',newConnection);
+console.log("555555555555*******************");
+
+
+function newConnection(socket){
+  console.log("Connected");
+
+socket.on('ff',dataCome);
+
+}
+
+function dataCome(data){
+  console.log(data);
+}
