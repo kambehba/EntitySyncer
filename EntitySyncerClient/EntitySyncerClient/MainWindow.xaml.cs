@@ -30,7 +30,7 @@ namespace EntitySyncerClient
            
         }
         private Quobject.SocketIoClientDotNet.Client.Socket socket { get; set; } 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void Connect_Click(object sender, RoutedEventArgs e)
         {
             
 
@@ -40,21 +40,53 @@ namespace EntitySyncerClient
 
             socket.On(Quobject.SocketIoClientDotNet.Client.Socket.EVENT_CONNECT, () =>
             {
-                UpdateStatus("Connected");
+              //  UpdateStatus("Connected");
             });
 
 
         }
 
 
-        private void UpdateStatus(string text)
+        //private void UpdateStatus(string text)
+        //{
+        //    t1.Dispatcher.Invoke(new Action(() => { t1.Text = "eeeeeeeeeee"; }));
+        //}
+
+        private void CreateEntity_Click(object sender, RoutedEventArgs e)
         {
-            t1.Dispatcher.Invoke(new Action(() => { t1.Text = "eeeeeeeeeee"; }));
+            AddEntity();
+            //socket.Emit("ff", "Kam Parsen");
         }
 
-        private void Button_Click_1(object sender, RoutedEventArgs e)
+
+        private void AddEntity()
         {
-            socket.Emit("ff", "Kam Parsen");
+            var randomPoint = GenerateRandomPoint();
+            var gg = new Ellipse();
+            gg.Height = 100;
+            gg.Width = 100;
+            gg.Stroke = Brushes.Red;
+            EntityCanvas.Children.Add(gg);
+            Canvas.SetLeft(gg, randomPoint.X);
+            Canvas.SetTop(gg, randomPoint.Y);
+
         }
+
+        private Point GenerateRandomPoint()
+        {
+            var p = new Point();
+            var canvasWidth = EntityCanvas.Width;
+            var canvasHeight = EntityCanvas.Height;
+            Random rnd = new Random();
+            int x = rnd.Next(0, Int32.Parse(canvasWidth.ToString()));
+            int y = rnd.Next(0, Int32.Parse(canvasHeight.ToString()));
+            p.X = x;
+            p.Y = y;
+
+            return p;
+        }
+
+
+
     }
 }
