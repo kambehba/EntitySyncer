@@ -50,10 +50,13 @@ console.log("555555555555*******************");
 function newConnection(socket){
   console.log("Connected");
 
-socket.on('ff',dataCome);
+socket.on('EntityAdded',HandleEntityAdded);
 
-}
 
-function dataCome(data){
+function HandleEntityAdded(data){
   console.log(data);
+  socket.broadcast.emit('EntityAdded',data);
 }
+
+}
+

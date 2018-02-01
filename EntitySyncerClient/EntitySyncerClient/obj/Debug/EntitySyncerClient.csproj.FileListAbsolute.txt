@@ -40,3 +40,4 @@ C:\Users\kam\Documents\GitHub\EntitySyncer\EntitySyncerClient\EntitySyncerClient
 C:\Users\kam\Documents\GitHub\EntitySyncer\EntitySyncerClient\EntitySyncerClient\obj\Debug\EntitySyncerClient.csproj.GenerateResource.Cache
 C:\Users\kam\Documents\GitHub\EntitySyncer\EntitySyncerClient\EntitySyncerClient\obj\Debug\EntitySyncerClient.exe
 C:\Users\kam\Documents\GitHub\EntitySyncer\EntitySyncerClient\EntitySyncerClient\obj\Debug\EntitySyncerClient.pdb
+C:\Users\kam\Documents\GitHub\EntitySyncer\EntitySyncerClient\EntitySyncerClient\obj\Debug\EntitySyncerClient.csprojResolveAssemblyReference.cache

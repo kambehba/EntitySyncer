@@ -5,15 +5,16 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:EntitySyncerClient"
         mc:Ignorable="d"
-        Title="MainWindow" Height="500" Width="800">
+        Title="MainWindow" Height="550" Width="800">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="10"/>
+            <RowDefinition Height="30"/>
             <RowDefinition Height="30"/>
             <RowDefinition Height="380"/>
             <RowDefinition Height="30"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
+        <Label Grid.Row="0" Name="StatusLable" HorizontalAlignment="Right" Width="100" Height="30"/>
         <Button Grid.Row="1" Content="Connect" VerticalAlignment="Center" HorizontalAlignment="Center" Width="100" Click="Connect_Click"/>
 
         <Canvas Name="EntityCanvas" Width="750" Height="350" Grid.Row="2">
