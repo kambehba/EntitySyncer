@@ -17,6 +17,7 @@ using System.Net.NetworkInformation;
 using System.Net;
 using Quobject.SocketIoClientDotNet.Client;
 using System.Windows.Threading;
+using System.Threading;
 
 namespace EntitySyncerClient
 {
@@ -38,6 +39,7 @@ namespace EntitySyncerClient
         }
        
         private Quobject.SocketIoClientDotNet.Client.Socket socket { get; set; } 
+
         private void Connect_Click(object sender, RoutedEventArgs e)
         {
             //socket = IO.Socket("http://localhost:3000");
@@ -59,11 +61,14 @@ namespace EntitySyncerClient
         private void CreateEntity_Click(object sender, RoutedEventArgs e)
         {
             clientId = "id-1";
-            _dispatcher.BeginInvoke(DispatcherPriority.Normal, new AddEntityDelegate(AddEntity));
-            socket.Emit("EntityAdded", "id-1");
+            _dispatcher.BeginInvoke(DispatcherPriority.ApplicationIdle, new AddEntityDelegate(AddEntity));
+            //socket.Emit("EntityAdded", "id-1");
+           // Thread.Sleep(3000);
+            //MoveEntity();
+
+
         }
 
-    
         private void AddEntity()
         {
             var randomPoint = GenerateRandomPoint();
@@ -78,6 +83,13 @@ namespace EntitySyncerClient
             EntityCanvas.Children.Add(entity);
             Canvas.SetLeft(entity, randomPoint.X);
             Canvas.SetTop(entity, randomPoint.Y);
+            for (int i = 0; i < 100; i++)
+            {
+                
+                Canvas.SetLeft(entity, i+100);
+                Canvas.SetTop(entity, i + 50);
+            }
+
         }
 
         private Point GenerateRandomPoint()
@@ -92,6 +104,24 @@ namespace EntitySyncerClient
             p.Y = y;
 
             return p;
+        }
+
+        private void MoveEntity()
+        {
+            for (int i = 0; i < 100;i++)
+            {
+                Canvas.SetLeft(EntityCanvas.Children[0], i);
+                Canvas.SetTop(EntityCanvas.Children[0], i+5);
+            }
+           
+        }
+
+        private string GetRandomDirection()
+        {
+            var direction = string.Empty;
+            Random rnd = new Random();
+            rnd.Next(1, 4);
+            return direction;
         }
 
 
